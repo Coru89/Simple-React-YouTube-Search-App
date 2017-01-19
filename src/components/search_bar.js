@@ -1,16 +1,22 @@
+//react
 import React, { Component}  from 'react';
-// import ReactDOM from 'react-dom';
 
 class SearchBar extends Component {
 
   constructor(props) {
       super(props);
+
+      //define state, only in constructor
+      this.state = {
+        term: '',
+      };
   }
 
   render() {
       return (
           <div>
-            <input onChange={e => console.log(e.target.value)} />
+            <input onChange={e => this.setState({term: e.target.value})} />
+            Value of input: {this.state.term}
           </div>
       );
   }
@@ -18,5 +24,3 @@ class SearchBar extends Component {
 
 
 export default SearchBar;
-
-// ReactDOM.render(< SearchBar />, querySelector());
