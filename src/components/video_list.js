@@ -1,13 +1,19 @@
-import React, { Component}  from 'react';
-// import ReactDOM from 'react-dom';
+import React from 'react';
+import VideoListItem from './video_list_item.js';
 
 
 const VideoList = (props) => {
+
+	const videoItems = props.propname.map((videoData) => {
+		//passing the videoData into a prop named videoData, as well as uinque key (etag)
+		return <VideoListItem key={videoData.etag} videoData={videoData} />
+	});
+
     return (
       <ul className="col-md-4 list-group">
-        {props.videos.length}
+	  	{videoItems}
       </ul>
-  )
+  );
 }
 
 export default VideoList;
@@ -23,3 +29,7 @@ export default VideoList;
 // }
 //
 // export default VideoList;
+
+
+//same same
+// const videoItems = props.propname.map(function(videosData) {
