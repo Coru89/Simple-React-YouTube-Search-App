@@ -2,11 +2,6 @@ import React, { Component}  from 'react';
 // import ReactDOM from 'react-dom';
 
 
-
-
-
-// WHY DOESNT THIS WORK?
-
 const VideoList = (props) => {
     return (
       <ul className="col-md-4 list-group">
