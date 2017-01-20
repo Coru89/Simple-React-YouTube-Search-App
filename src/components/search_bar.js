@@ -1,5 +1,6 @@
 //react
 import React, { Component}  from 'react';
+import YTSearch from 'youtube-api-search';
 
 class SearchBar extends Component {
 
@@ -8,14 +9,14 @@ class SearchBar extends Component {
 
       //define state, only in constructor
       this.state = {
-        term: '',
+        term: ' ',
       };
   }
 
   render() {
       return (
           <div>
-            <input onChange={e => this.setState({term: e.target.value})} />
+            <input value={this.state.term} onChange={e => this.setState({term: e.target.value})} />
             Value of input: {this.state.term}
           </div>
       );
