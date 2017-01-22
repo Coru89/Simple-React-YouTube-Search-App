@@ -1,18 +1,24 @@
 import React from 'react';
 import VideoListItem from './video_list_item.js';
 
-
 const VideoList = (props) => {
 
 	const videoItems = props.propname.map((videoData) => {
 		//passing the videoData into a prop named videoData, as well as uinque key (etag)
-		return <VideoListItem key={videoData.etag} videoData={videoData} />
+		return (
+			<VideoListItem
+				onVideoSelect={props.onVideoSelect}
+				key={videoData.etag}
+				videoData={videoData} />
+		);
 	});
 
     return (
-      <ul className="col-md-4 list-group">
-	  	{videoItems}
-      </ul>
+		<section id="video-list-item">
+			<ul className="col-md-4 list-group">
+	  	  	{videoItems}
+	        </ul>
+		</section>
   );
 }
 

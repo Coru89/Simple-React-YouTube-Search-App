@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
+import _ from 'lodash';
 //App components
 import SearchBar from './components/search_bar.js';
 import VideoList from './components/video_list.js';
@@ -15,22 +16,44 @@ class App extends React.Component {
         super(props);
 
 		this.state = {
-	      videos: []
+	      videos: [],
+		  selectedVideo: null
 	    }
+		this.videoSearch('Dank Meme');
+		this.onVideoSelect = this.onVideoSelect.bind(this);
+	}
 
-          YTSearch({key: API_KEY, term: 'booty'}, (videoData) => {
-          this.setState({ videos: videoData });
-        }
-    )
-}
+
+
+	// TODO: reimplement using youtube API from scratch! ;) xoxxoxoxoxox
+	videoSearch(term) {
+		YTSearch({key: API_KEY, term: term}, (videoData) => {
+			this.setState({
+				videos: videoData,
+				selectedVideo: videoData[0]
+			});
+		})
+	}
+
+
+	//this function is to handle li click
+	onVideoSelect(selectedVideo) {
+		this.setState({ selectedVideo });
+		console.log(this);
+	}
 
     render() {
+
         return (
             <div>
-              <SearchBar />
-			  <VideoDetail />
-              <VideoList propname={this.state.videos} />
+              <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
+			  <VideoDetail propname={this.state.selectedVideo} />
+			  <VideoList
+ 			   	onVideoSelect={this.onVideoSelect}
+ 			  	propname={this.state.videos} />
             </div>
+			//   this function updates state of this app
+    		//   this function is being stored into a prop called on VideoSelect
         );
     }
 }
